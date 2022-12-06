@@ -1,19 +1,18 @@
-package array_test
+package lists_test
 
 import (
-	"lists/lists/array"
+	"lists/lists"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
 )
 
-func TestNew(t *testing.T) {
-	arr := array.New()
-	assert.Zero(t, arr.Length())
+func TestArray(t *testing.T) {
+	testList(t, lists.Array)
 }
 
-func TestArray(t *testing.T) {
-	arr := array.New()
+func testList(t *testing.T, listType lists.ListType) {
+	arr := lists.New(listType)
 	assert.Zero(t, arr.Length())
 
 	// Add
@@ -61,5 +60,4 @@ func TestArray(t *testing.T) {
 	assert.NoError(t, err)
 	assert.Equal(t, "three", num)
 	assert.Equal(t, 0, arr.Length())
-
 }
