@@ -12,9 +12,8 @@ func New() *Array {
 	}
 }
 
-func (a *Array) Add(element any) error {
+func (a *Array) Add(element any) {
 	a.data = append(a.data, element)
-	return nil
 }
 
 func (a *Array) Remove(element any) (any, error) {

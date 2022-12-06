@@ -11,21 +11,22 @@ func TestArray(t *testing.T) {
 	testList(t, lists.Array)
 }
 
+func TestLinkedList(t *testing.T) {
+	testList(t, lists.LinkedList)
+}
+
 func testList(t *testing.T, listType lists.ListType) {
 	arr := lists.New(listType)
 	assert.Zero(t, arr.Length())
 
 	// Add
-	err := arr.Add("one")
-	assert.NoError(t, err)
+	arr.Add("one")
 	assert.Equal(t, 1, arr.Length())
 
-	err = arr.Add("two")
-	assert.NoError(t, err)
+	arr.Add("two")
 	assert.Equal(t, 2, arr.Length())
 
-	err = arr.Add("three")
-	assert.NoError(t, err)
+	arr.Add("three")
 	assert.Equal(t, 3, arr.Length())
 
 	// Find
@@ -40,6 +41,10 @@ func testList(t *testing.T, listType lists.ListType) {
 	num, err = arr.Find("one")
 	assert.NoError(t, err)
 	assert.Equal(t, "one", num)
+
+	num, err = arr.Find("six")
+	assert.EqualError(t, err, "unable to find element 'six'")
+	assert.Nil(t, num)
 
 	// Remove
 	num, err = arr.Remove("four")

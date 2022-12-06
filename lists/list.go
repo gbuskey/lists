@@ -1,9 +1,12 @@
 package lists
 
-import "lists/lists/array"
+import (
+	"lists/lists/array"
+	"lists/lists/linkedlist"
+)
 
 type List interface {
-	Add(element any) error
+	Add(element any)
 	Remove(element any) (any, error)
 	Find(element any) (any, error)
 	Length() int
@@ -22,6 +25,9 @@ func New(list ListType) List {
 	switch list {
 	case Array:
 		return array.New()
+	case LinkedList:
+		return linkedlist.New()
+	default:
+		return nil
 	}
-	return nil
 }
